@@ -1,18 +1,35 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+//React Element - type(tag), attributes, content withing tags - creates an Object - when this is rendered onto the DOM it becomes an HTML Element
+const heading = React.createElement("h1", { id: "heading" }, "Heading");
 
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child" }, [
-      React.createElement("h1", {}, "I'm an h1 tag "),
-      React.createElement("h2", {}, "I'm an h2 tag "),
-    ]),
-    React.createElement("div", { id: "child2" }, [
-        React.createElement("h1", {}, "I'm an h1 tag "),
-        React.createElement("h2", {}, "I'm an h2 tag "),
-  ]),
-]);
+//JSX code is transpiled before it is ready by JS Engine by Babel(parcel dependency Babel)
+//JSX => React.createElement (Object) => Rendered as HTML Element to DOM
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
-//console.log(root);
-//console.log(elementWithHeading);
+
+//React functional components
+const TitleComponent = () => {
+  return (
+    <h1 className="jsx-heading" tabIndex="5">
+      Title using JSX
+    </h1>
+  );
+};
+
+const num = 100;
+
+const HeadingComponent = () => {
+  return (
+    <div className="container">
+      <h1>Heading from react functional component {num}</h1>
+      <TitleComponent />
+      <TitleComponent></TitleComponent>
+      {heading}
+    </div>
+  );
+};
+
+//anything already inside root will be replaces by heading
+root.render(<HeadingComponent />);
