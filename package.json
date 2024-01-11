@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "learn-react",
   "scripts": {
-    "test": "jest"
+    "start": "npx parcel index.html",
+    "test": "jest",
+    "build": "npx parcel build index.html"
   },
   "repository": {
     "type": "git",
