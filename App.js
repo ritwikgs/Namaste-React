@@ -49,7 +49,7 @@ const RestaurantCard = ({
   );
 };
 
-const allResturants = [
+const allRestaurants = [
   {
     restaurantName: "Meghana Foods",
     cuisines: "Biriyanis",
@@ -93,13 +93,13 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="restaurant-container">
-        {allResturants.map((res, index) => (
+        {allRestaurants?.map((res, index) => (
           <RestaurantCard
-            restaurantName={res.restaurantName}
-            cuisines={res.cuisines}
-            ratings={res.ratings}
-            address={res.address}
-            imageUrl={res.imageUrl}
+            restaurantName={res?.restaurantName}
+            cuisines={res?.cuisines}
+            ratings={res?.ratings}
+            address={res?.address}
+            imageUrl={res?.imageUrl}
             key={index}
           ></RestaurantCard>
         ))}
