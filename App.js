@@ -16,64 +16,93 @@ import ReactDOM from "react-dom";
  * - Contact
  */
 
-const RestaurantCard = (props) => {
+const RestaurantCard = ({
+  restaurantName,
+  cuisines,
+  ratings,
+  deliveryTime,
+  address,
+  imageUrl,
+}) => {
+  console.log(
+    restaurantName,
+    cuisines,
+    address,
+    ratings,
+    deliveryTime,
+    imageUrl
+  );
   return (
     <div className="restaurant-card">
-      <img
-        className="restaurant-image"
-        src={props.imageUrl}
-      />
-      <h3>{props.restaurantName}</h3>
+      <img className="restaurant-image" src={imageUrl} />
+      <h3>{restaurantName}</h3>
       <div className="resturant-details">
-        <h4>{props.cuisines}</h4>
-        <h4>{props.ratings}</h4>
-        <h4>{props.deliveryTime}</h4>
+        <h4>{cuisines}</h4>
+
+        <h4>{ratings}</h4>
+        <h4>{deliveryTime}</h4>
       </div>
       <div className="restaurant-address">
-        <h4>{props.address}</h4>
+        <h4>{address}</h4>
       </div>
-      
     </div>
   );
 };
+
+const allResturants = [
+  {
+    restaurantName: "Meghana Foods",
+    cuisines: "Biriyanis",
+    ratings: "4.7",
+    deliveryTime: "30 minutes",
+    address: "Koramangala, Bangalore",
+    imageUrl:
+      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/g0isknuhld1ltwxkjkcg",
+  },
+  {
+    restaurantName: "Dominos Pizza",
+    cuisines: "Pizza",
+    ratings: "4.5",
+    deliveryTime: "28 minutes",
+    address: "J P Nagar, Bangalore",
+    imageUrl:
+      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/iwxqykgpvgcjipvlugqy",
+  },
+  {
+    restaurantName: "McDonolds",
+    cuisines: "Burger",
+    ratings: "4.4",
+    deliveryTime: "20 minutes",
+    address: "Banashankari, Bangalore",
+    imageUrl:
+      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/q0astez5jmmfo5icayde",
+  },
+  {
+    restaurantName: "California Burritos",
+    cuisines: "Mexican",
+    ratings: "4.3",
+    deliveryTime: "30 minutes",
+    address: "Gandhi Bazar, Bangalore",
+    imageUrl:
+      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/p57honbbzdgf7tyt2vay",
+  },
+];
 
 const Body = () => {
   return (
     <div className="body">
       <div className="search">Search</div>
       <div className="restaurant-container">
-        <RestaurantCard
-          restaurantName="Meghana Foods"
-          cuisines="Biriyanis"
-          ratings="4.7"
-          deliveryTime="30 minutes"
-          address="Koramangala, Bangalore"
-          imageUrl="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/g0isknuhld1ltwxkjkcg"
-        />
-        <RestaurantCard
-          restaurantName="Dominos Pizza"
-          cuisines="Pizza"
-          ratings="4.5"
-          deliveryTime="20 minutes"
-          address="JP Nagar, Bangalore"
-          imageUrl="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/iwxqykgpvgcjipvlugqy"
-        />
-        <RestaurantCard
-          restaurantName="McDonolds"
-          cuisines="Burgers"
-          ratings="4.4"
-          deliveryTime="25 minutes"
-          address="Banashankari, Bangalore"
-          imageUrl="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/q0astez5jmmfo5icayde"
-        />
-        <RestaurantCard
-          restaurantName="California Burritos"
-          cuisines="Mexican"
-          ratings="4.3"
-          deliveryTime="28 minutes"
-          address="Gandhi Bazar, Bangalore"
-          imageUrl="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/p57honbbzdgf7tyt2vay"
-        />
+        {allResturants.map((res, index) => (
+          <RestaurantCard
+            restaurantName={res.restaurantName}
+            cuisines={res.cuisines}
+            ratings={res.ratings}
+            address={res.address}
+            imageUrl={res.imageUrl}
+            key={index}
+          ></RestaurantCard>
+        ))}
       </div>
     </div>
   );
