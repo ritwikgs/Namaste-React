@@ -1,4 +1,11 @@
 # Namaste-React
 
-Learn React
-HMR - Hot module replacement by file watching algorithm(C++) by parcel
+## Learn React
+
+`CDN`
+`React & ReactDOM`
+`Component`
+`JSX`
+`Props`
+`State`
+`list and keys`
