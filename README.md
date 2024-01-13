@@ -9,7 +9,6 @@
 `Props`
 `State`
 `list and keys`
-
 `Higher Order Component`
 `Functional Component`
 `Class Component`
