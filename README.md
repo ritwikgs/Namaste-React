@@ -41,3 +41,30 @@
 > npm install
 
 > npm start
+
+## Food order app
+
+- Header
+- - Logo
+- - Nav Items
+- Body
+- - Search
+- - Restaurant container
+- - Restaurant card (image, name, rating, cuisine, delivery time)
+- Footer
+- - Links
+- - Copyright
+- - Address
+- - Contact
+
+## Types of export/import
+
+> Default
+
+- export default logo;
+- import logo from ../utils/constants;
+
+> Named
+
+- export const logo = "logo_value";
+- import { logo } from ../utils/constants;
