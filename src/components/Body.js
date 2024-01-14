@@ -2,6 +2,7 @@ import RestaurantCard from "./ResturantCard";
 import allRestaurants from "../utils/mock-data";
 import { useState, useEffect } from "react";
 import RickAndMorty from "./RickAndMorty";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   //state variable - use state hook
@@ -23,8 +24,26 @@ const Body = () => {
 
   //use effect hook
   useEffect(() => {
-    getRickAndMortyData();
+    setTimeout(() => {
+      getRickAndMortyData();
+    }, 1000);
   }, []);
+
+  if (rickAndMortyCharacters?.length === 0) {
+    <h1>Loading...</h1>;
+    return (
+      <div className="shimmer-container">
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+        <Shimmer />
+      </div>
+    );
+  }
 
   return (
     <div className="body">
@@ -70,8 +89,41 @@ const Body = () => {
         >
           Only Restaurants
         </button>
+        <button
+          className="top-rated-restaurants-btn"
+          disabled={rickAndMortyCharacters?.length === 0}
+          onClick={() => {
+            const humansOnly = rickAndMortyCharacters?.filter(
+              (char) => char?.species === "Human"
+            );
+            setRickAndMortyCharacters(humansOnly);
+          }}
+        >
+          Only Humans
+        </button>
+        <button
+          className="top-rated-restaurants-btn"
+          disabled={rickAndMortyCharacters?.length === 0}
+          onClick={() => {
+            const alinesOnly = rickAndMortyCharacters?.filter(
+              (char) => char?.species === "Alien"
+            );
+            setRickAndMortyCharacters(alinesOnly);
+          }}
+        >
+          Only Alines
+        </button>
+        <button
+          className="top-rated-restaurants-btn"
+          disabled={rickAndMortyCharacters?.length === 0}
+          onClick={() => {
+            getRickAndMortyData();
+          }}
+        >
+          All Species
+        </button>
       </div>
-      <div className="restaurant-container">
+      {/* <div className="restaurant-container">
         {listOfRestaurants?.map((res, index) => (
           <RestaurantCard
             restaurantName={res?.info?.name}
@@ -82,7 +134,7 @@ const Body = () => {
             key={res?.info?.id}
           ></RestaurantCard>
         ))}
-      </div>
+      </div> */}
       <div className="restaurant-container">
         {rickAndMortyCharacters?.map((res, index) => (
           <RickAndMorty
