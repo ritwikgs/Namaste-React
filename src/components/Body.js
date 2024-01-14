@@ -10,7 +10,7 @@ const Body = () => {
   );
   const [rickAndMortyCharacters, setRickAndMortyCharacters] = useState([]);
 
-  fetchData = async () => {
+  getRickAndMortyData = async () => {
     try {
       const response = await fetch("https://rickandmortyapi.com/api/character");
       const jsonResponse = await response.json();
@@ -23,7 +23,7 @@ const Body = () => {
 
   //use effect hook
   useEffect(() => {
-    fetchData();
+    getRickAndMortyData();
   }, []);
 
   return (
@@ -31,12 +31,14 @@ const Body = () => {
       <div className="search">Search</div>
       <div className="top-rated-restaurants-filter">
         <button
+          disabled={listOfRestaurants?.length === 0}
           className="top-rated-restaurants-btn"
           onClick={() => {
             const filteredList = listOfRestaurants?.filter(
               (res) => Number(res?.info?.avgRatingString) >= 4.5
             );
             setListOfRestaurants(filteredList);
+            getRickAndMortyData();
           }}
         >
           Top rated Restaurants
@@ -45,9 +47,28 @@ const Body = () => {
           className="top-rated-restaurants-btn"
           onClick={() => {
             setListOfRestaurants(allRestaurants);
+            getRickAndMortyData();
           }}
         >
           All Restaurants
+        </button>
+        <button
+          className="top-rated-restaurants-btn"
+          onClick={() => {
+            setListOfRestaurants([]);
+            getRickAndMortyData();
+          }}
+        >
+          Only Rick and Morty
+        </button>
+        <button
+          className="top-rated-restaurants-btn"
+          onClick={() => {
+            setRickAndMortyCharacters([]);
+            setListOfRestaurants(allRestaurants);
+          }}
+        >
+          Only Restaurants
         </button>
       </div>
       <div className="restaurant-container">
@@ -63,11 +84,16 @@ const Body = () => {
         ))}
       </div>
       <div className="restaurant-container">
-          {
-            rickAndMortyCharacters?.map((res, index) => (
-              <RickAndMorty key={res?.id} name={res?.name} status={res?.status} location={res?.location?.name} image={res?.image} species={res?.species} ></RickAndMorty>
-            ))
-          }
+        {rickAndMortyCharacters?.map((res, index) => (
+          <RickAndMorty
+            key={res?.id}
+            name={res?.name}
+            status={res?.status}
+            location={res?.location?.name}
+            image={res?.image}
+            species={res?.species}
+          ></RickAndMorty>
+        ))}
       </div>
     </div>
   );

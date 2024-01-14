@@ -1,7 +1,16 @@
 .header {
   display: flex;
   justify-content: space-between;
-  background-color: #f0f0f0f0;
+  background: linear-gradient(to right, #4b6cb7, #193b80);
+}
+
+.body {
+  background: linear-gradient(to right, #4b6cb7, #182848);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-items > ul {
@@ -13,6 +22,13 @@
 .nav-items > ul > li {
   margin: 10px;
   padding: 10px;
+}
+
+.nav-items > ul > li:hover {
+  background-color: rgb(8, 8, 8);
+  color: rgb(248, 246, 243);
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .logo {
@@ -30,10 +46,34 @@
   border-radius: 5px;
 }
 
-.restaurant-card:hover {
-  border: 0.5px solid #d9c2c2f0;
+.rick-and-morty-card {
+  width: 30%;
+  min-height: 100%;
+  padding: 5px;
+  font-size: 9px;
+  margin: 10px;
+  background-color: #555050f0;
+  border-radius: 5px;
+}
+
+.character-image {
+  max-width: 75%;
+  min-height: 100%;
+  border-radius: 10px;
+}
+
+.rick-and-morty-card:hover {
+  border: 0.5px solid #131313f0;
   cursor: pointer;
-  background-color: #d9c2c2f0;
+  background-color: #131313f0;
+  color: rgb(243, 243, 233);
+}
+
+.restaurant-card:hover {
+  border: 0.5px solid #131313f0;
+  cursor: pointer;
+  background-color: #131313f0;
+  color: rgb(243, 243, 233);
 }
 
 .search {
@@ -57,7 +97,6 @@
 }
 
 .restaurant-address {
-  color: rgb(49, 47, 47);
   font-size: small;
 }
 
