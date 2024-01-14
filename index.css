@@ -22,17 +22,18 @@
 
 .restaurant-card {
   width: 180px;
-  height: 220px;
+  height: 250px;
   padding: 5px;
-  font-size: 10px;
+  font-size: 9px;
   margin: 10px;
   background-color: #f0f0f0f0;
   border-radius: 5px;
 }
 
 .restaurant-card:hover {
-  border: 0.5px solid black;
+  border: 0.5px solid #d9c2c2f0;
   cursor: pointer;
+  background-color: #d9c2c2f0;
 }
 
 .search {
@@ -50,9 +51,9 @@
   flex-wrap: wrap;
 }
 
-.resturant-details {
+.restaurant-details {
   display: flex;
-  justify-content: space-between;
+  word-break: break-all;
 }
 
 .restaurant-address {
