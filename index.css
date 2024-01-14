@@ -57,7 +57,7 @@
 }
 
 .character-image {
-  max-width: 75%;
+  max-width: 70%;
   min-height: 100%;
   border-radius: 10px;
 }
@@ -107,4 +107,20 @@
 .top-rated-restaurants-btn {
   margin-left: 5px;
   cursor: pointer;
+}
+
+.inline-list-alive {
+  color: #0b4f15f0;
+  padding: 0;
+}
+
+.inline-list-dead {
+  color: #940707f0;
+  padding: 0;
+}
+
+.status {
+  display: inline-block;
+  margin-left: 10px; /* Adjust spacing between items if needed */
+  font-weight: 800;
 }
