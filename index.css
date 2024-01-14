@@ -13,7 +13,6 @@
 .nav-items > ul > li {
   margin: 10px;
   padding: 10px;
-
 }
 
 .logo {
@@ -58,5 +57,14 @@
 
 .restaurant-address {
   color: rgb(49, 47, 47);
-  font-size:small;
+  font-size: small;
+}
+
+.top-rated-restaurants-filter {
+  margin: 10px;
+}
+
+.top-rated-restaurants-btn {
+  margin-left: 5px;
+  cursor: pointer;
 }
