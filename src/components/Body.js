@@ -6,10 +6,14 @@ import Shimmer from "./Shimmer";
 
 const Body = () => {
   //state variable - use state hook
+  //whenever there is a change in state variable, react re-renders the component
   const [listOfRestaurants, setListOfRestaurants] = useState(
     allRestaurants || []
   );
   const [rickAndMortyCharacters, setRickAndMortyCharacters] = useState([]);
+  const [searchText, setSearchText] = useState("");
+  const [filteredRickAndMortyCharacters, setFilteredRickAndMortyCharacters] =
+    useState([]);
 
   getRickAndMortyData = async () => {
     try {
@@ -17,6 +21,7 @@ const Body = () => {
       const jsonResponse = await response.json();
       console.log(jsonResponse);
       setRickAndMortyCharacters(jsonResponse?.results);
+      setFilteredRickAndMortyCharacters(jsonResponse?.results);
     } catch (error) {
       console.error(error);
     }
@@ -30,7 +35,6 @@ const Body = () => {
   }, []);
 
   if (rickAndMortyCharacters?.length === 0) {
-    <h1>Loading...</h1>;
     return (
       <div className="shimmer-container">
         <Shimmer />
@@ -47,7 +51,41 @@ const Body = () => {
 
   return (
     <div className="body">
-      <div className="search">Search</div>
+      <div className="search-box">
+        <input
+          type="text"
+          className="search-text"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            const filterdCharacters = rickAndMortyCharacters?.filter((ch) =>
+              ch.name.toLowerCase()?.includes(searchText.toLowerCase())
+            );
+            if (filterdCharacters) {
+              setFilteredRickAndMortyCharacters(filterdCharacters);
+            }
+          }}
+        />
+        {/* <button
+          onClick={() => {
+            const filterdCharacters = rickAndMortyCharacters?.filter((ch) =>
+              ch.name.toLowerCase()?.includes(searchText.toLowerCase())
+            );
+            if (filterdCharacters) {
+              setFilteredRickAndMortyCharacters(filterdCharacters);
+            }
+          }}
+        >
+          search
+        </button> */}
+        <button
+          onClick={() => {
+            getRickAndMortyData();
+          }}
+        >
+          clear
+        </button>
+      </div>
       <div className="top-rated-restaurants-filter">
         <button
           disabled={listOfRestaurants?.length === 0}
@@ -136,7 +174,7 @@ const Body = () => {
         ))}
       </div> */}
       <div className="restaurant-container">
-        {rickAndMortyCharacters?.map((res, index) => (
+        {filteredRickAndMortyCharacters?.map((res, index) => (
           <RickAndMorty
             key={res?.id}
             name={res?.name}

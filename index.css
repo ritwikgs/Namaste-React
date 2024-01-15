@@ -164,6 +164,11 @@
   margin-top: 10px;
 }
 
+.search-box {
+  margin-left: 15px;
+  
+}
+
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
