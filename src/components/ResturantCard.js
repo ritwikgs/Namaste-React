@@ -5,16 +5,29 @@ const RestaurantCard = ({
   deliveryTime,
   address,
   imageUrl,
+  costForTwo,
+  sla,
 }) => {
   return (
     <div className="restaurant-card">
       <img className="restaurant-image" src={imageUrl} />
-      <h3>{restaurantName}</h3>
-      <div className="restaurant-details">
-        <h4>{cuisines}</h4>
+
+      <div>
+        <div className="restaurant-details">
+          <h3>{restaurantName}</h3>
+        </div>
+        <div className="restaurant-details">
+          <h4>{ratings}</h4>
+        </div>
+        <div className="restaurant-details">
+          <h4>{cuisines}</h4>
+        </div>
+        <div className="flex-container">
+          <div className="box">{costForTwo}</div>
+          <div className="box">{sla}</div>
+        </div>
       </div>
-      <h4>{ratings}</h4>
-      <h4>{deliveryTime}</h4>
+
       <div className="restaurant-address">
         <h4>{address}</h4>
       </div>
