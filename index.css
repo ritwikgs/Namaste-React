@@ -1,11 +1,11 @@
 .header {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(to right, #4b6cb7, #193b80);
+  background: linear-gradient(to right, #3f4041, #091122);
 }
 
 .body {
-  background: linear-gradient(to right, #4b6cb7, #182848);
+  background: linear-gradient(to right, #3f4041, #091122);
 }
 
 .inner {
@@ -22,6 +22,9 @@
 .nav-items > ul > li {
   margin: 10px;
   padding: 10px;
+  color: #fff; /* Light text color */
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .nav-items > ul > li:hover {
@@ -37,12 +40,12 @@
 }
 
 .restaurant-card {
-  width: 185px;
-  height: 290px;
+  width: 190px;
+  height: 320px;
   padding: 7px;
   font-size: 9px;
   margin: 10px;
-  background-color: #f0f0f0f0;
+  background: linear-gradient(to right, #4b6cb7, #193b80);
   border-radius: 5px;
 }
 
@@ -70,9 +73,9 @@
 }
 
 .restaurant-card:hover {
-  border: 0.5px solid #131313f0;
+  border: 0.5px;
   cursor: pointer;
-  background-color: #131313f0;
+  background: linear-gradient(to right, #333435, #070e1c);
   color: rgb(243, 243, 233);
 }
 
@@ -106,12 +109,74 @@
 }
 
 .top-rated-restaurants-filter {
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .top-rated-restaurants-btn {
+  margin-left: 5px;
+  cursor: pointer;
+  background-color: #070e1c;
+  color: #e0e0e0;
+  border-radius: 5px;
+} */
+
+.search-text {
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #4b6e86; /* Border color */
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+  color: #333; /* Text color */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.earch-text:focus {
+  border-color: #2ecc71; /* Border color on focus */
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.6); /* Box shadow on focus */
 }
 
 .top-rated-restaurants-btn {
-  margin-left: 5px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #2b2d31; /* Dark background color */
+  color: #fff; /* Light text color */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.clear-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #2b2d31; /* Dark background color */
+  color: #fff; /* Light text color */
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.clear-btn:hover {
+  background-color: #555; /* Darker background color on hover */
+}
+
+.top-rated-restaurants-btn:hover {
+  background-color: #555; /* Darker background color on hover */
 }
 
 .inline-list-alive {
@@ -170,6 +235,8 @@
 }
 
 .search-box {
+  display: flex;
+  justify-content: flex-start;
   margin-left: 15px;
 }
 
@@ -178,9 +245,7 @@
 }
 
 .box {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 5px;
+  padding: 5px;
 }
 
 @keyframes shimmer {

@@ -3,6 +3,7 @@ import allRestaurants from "../utils/mock-data";
 import { useState, useEffect } from "react";
 import RickAndMorty from "./RickAndMorty";
 import Shimmer from "./Shimmer";
+import { SAMPLE_RESTAURANT_LOGO } from "../utils/constants";
 
 const Body = () => {
   //state variable - use state hook
@@ -53,10 +54,12 @@ const Body = () => {
     setTimeout(() => {
       getRickAndMortyData();
       getRestaurantData();
-    }, 1000);
+    }, 2000);
   }, []);
 
-  if (rickAndMortyCharacters?.length === 0 && listOfRestaurants?.length == 0) {
+  console.log(rickAndMortyCharacters, listOfRestaurants);
+
+  if (rickAndMortyCharacters?.length === 0 || listOfRestaurants?.length == 0) {
     return (
       <div className="shimmer-container">
         <Shimmer />
@@ -76,20 +79,34 @@ const Body = () => {
       <div className="search-box">
         <input
           type="text"
+          placeholder="Search rick and morty characters"
           className="search-text"
           value={searchText}
           onChange={(e) => {
             const search = e.target.value;
             setSearchText(search);
             console.log(searchText, search, "search text");
-            const filterdCharacters = rickAndMortyCharacters?.filter((ch) =>
+            const filteredCharacters = rickAndMortyCharacters?.filter((ch) =>
               ch.name.toLowerCase()?.includes(search.toLowerCase())
             );
-            console.log(filterdCharacters, "filteredcharactyers");
-
-            setFilteredRickAndMortyCharacters(filterdCharacters);
+            setFilteredRickAndMortyCharacters(filteredCharacters);
+            if (!search) {
+              setFilteredListOfRestaurants(listOfRestaurants);
+            } else {
+              setFilteredListOfRestaurants([]);
+            }
           }}
         />
+        <button
+          className="clear-btn"
+          onClick={() => {
+            setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
+            setFilteredListOfRestaurants(listOfRestaurants);
+          }}
+        >
+          clear
+        </button>
+        {/* <input type="text" class="styled-input" placeholder="Search rick and morty characters"></input> */}
         {/* <button
           onClick={() => {
             const filterdCharacters = rickAndMortyCharacters?.filter((ch) =>
@@ -102,15 +119,26 @@ const Body = () => {
         >
           search
         </button> */}
+      </div>
+      <div className="top-rated-restaurants-filter">
         <button
+          className="top-rated-restaurants-btn"
           onClick={() => {
+            setFilteredListOfRestaurants(listOfRestaurants);
             setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
           }}
         >
-          clear
+          All
         </button>
-      </div>
-      <div className="top-rated-restaurants-filter">
+        <button
+          className="top-rated-restaurants-btn"
+          onClick={() => {
+            setFilteredListOfRestaurants(listOfRestaurants);
+            setFilteredRickAndMortyCharacters([]);
+          }}
+        >
+          Only Restaurants
+        </button>
         <button
           disabled={listOfRestaurants?.length === 0}
           className="top-rated-restaurants-btn"
@@ -127,30 +155,11 @@ const Body = () => {
         <button
           className="top-rated-restaurants-btn"
           onClick={() => {
-            setFilteredListOfRestaurants(listOfRestaurants);
-            setFilteredRickAndMortyCharacters([]);
-            // getRickAndMortyData();
-          }}
-        >
-          All Restaurants
-        </button>
-        <button
-          className="top-rated-restaurants-btn"
-          onClick={() => {
             setFilteredListOfRestaurants([]);
             setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
           }}
         >
           Only Rick and Morty
-        </button>
-        <button
-          className="top-rated-restaurants-btn"
-          onClick={() => {
-            setFilteredListOfRestaurants(listOfRestaurants);
-            setFilteredRickAndMortyCharacters([]);
-          }}
-        >
-          Only Restaurants
         </button>
         <button
           className="top-rated-restaurants-btn"
@@ -178,17 +187,8 @@ const Body = () => {
         >
           Only Alines
         </button>
-        <button
-          className="top-rated-restaurants-btn"
-          disabled={rickAndMortyCharacters?.length === 0}
-          onClick={() => {
-            setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
-            setFilteredListOfRestaurants([]);
-          }}
-        >
-          All Species
-        </button>
       </div>
+
       <div className="restaurant-container">
         {filteredListOfRestaurants?.map((res, index) => (
           <RestaurantCard
@@ -201,8 +201,8 @@ const Body = () => {
             ratings={res?.info?.avgRatingString}
             address={res?.info?.areaName}
             costForTwo={res?.info?.costForTwo}
-            sla={res?.info.sla.slaString}
-            imageUrl="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_288,c_fill/g0isknuhld1ltwxkjkcg"
+            sla={res?.info?.sla?.slaString}
+            imageUrl={SAMPLE_RESTAURANT_LOGO}
             key={res?.info?.id}
           ></RestaurantCard>
         ))}
