@@ -9,7 +9,7 @@ import {
   BYPASS_CORS,
 } from "../utils/constants";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
+//import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   //state variable - use state hook
@@ -64,12 +64,12 @@ const Body = () => {
 
   // console.log(rickAndMortyCharacters.length, listOfRestaurants.length);
 
-  const isOnline = useOnlineStatus();
-  console.log(isOnline, "isOnline");
+  // const isOnline = useOnlineStatus();
+  // console.log(isOnline, "isOnline");
 
-  if (!isOnline) {
-    return <div className="offline-card">You are offline!</div>;
-  }
+  // if (!isOnline) {
+  //   return <div className="offline-card">You are offline!</div>;
+  // }
 
   if (rickAndMortyCharacters?.length === 0 || listOfRestaurants?.length === 0) {
     return <div className="shimmer-container">{generateShimmers(10)}</div>;
