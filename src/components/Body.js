@@ -3,7 +3,12 @@ import allRestaurants from "../utils/mock-data";
 import { useState, useEffect } from "react";
 import RickAndMorty from "./RickAndMorty";
 import Shimmer from "./Shimmer";
-import { SAMPLE_RESTAURANT_LOGO } from "../utils/constants";
+import {
+  SAMPLE_RESTAURANT_LOGO,
+  SWIGGY_API_URL,
+  BYPASS_CORS,
+} from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   //state variable - use state hook
@@ -24,7 +29,7 @@ const Body = () => {
     try {
       const response = await fetch("https://rickandmortyapi.com/api/character");
       const jsonResponse = await response.json();
-      console.log(jsonResponse);
+      console.log(jsonResponse, "rickmorty");
       setRickAndMortyCharacters(jsonResponse?.results);
       setFilteredRickAndMortyCharacters(jsonResponse?.results);
     } catch (error) {
@@ -33,20 +38,19 @@ const Body = () => {
   };
 
   getRestaurantData = async () => {
-    const url =
-      "https://corsproxy.org/?" +
-      encodeURIComponent(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
+    const url = BYPASS_CORS + encodeURIComponent(SWIGGY_API_URL);
     const data = await fetch(url);
     const json = await data.json();
     const restaurants =
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
     console.log(restaurants, "restaurants");
-
     setListOfRestaurants(restaurants);
     setFilteredListOfRestaurants(restaurants);
+  };
+
+  const generateShimmers = (count) => {
+    return Array.from({ length: count }, (_, index) => <Shimmer key={index} />);
   };
 
   //use effect hook
@@ -54,24 +58,13 @@ const Body = () => {
     setTimeout(() => {
       getRickAndMortyData();
       getRestaurantData();
-    }, 2000);
+    }, 1000);
   }, []);
 
-  console.log(rickAndMortyCharacters, listOfRestaurants);
+  // console.log(rickAndMortyCharacters.length, listOfRestaurants.length);
 
-  if (rickAndMortyCharacters?.length === 0 || listOfRestaurants?.length == 0) {
-    return (
-      <div className="shimmer-container">
-        <Shimmer />
-        <Shimmer />
-        <Shimmer />
-        <Shimmer />
-        <Shimmer />
-        <Shimmer />
-        <Shimmer />
-        <Shimmer />
-      </div>
-    );
+  if (rickAndMortyCharacters?.length === 0 || listOfRestaurants?.length === 0) {
+    return <div className="shimmer-container">{generateShimmers(10)}</div>;
   }
 
   return (
@@ -79,32 +72,36 @@ const Body = () => {
       <div className="search-box">
         <input
           type="text"
-          placeholder="Search rick and morty characters"
+          placeholder="Search"
           className="search-text"
           value={searchText}
           onChange={(e) => {
             const search = e.target.value;
             setSearchText(search);
-            console.log(searchText, search, "search text");
             const filteredCharacters = rickAndMortyCharacters?.filter((ch) =>
-              ch.name.toLowerCase()?.includes(search.toLowerCase())
+              ch?.name?.toLowerCase()?.includes(search.toLowerCase())
             );
+            const filteredRestaurants = listOfRestaurants?.filter(
+              (restaurant) =>
+                restaurant?.info?.name
+                  ?.toLowerCase()
+                  .includes(search.toLowerCase())
+            );
+            setFilteredListOfRestaurants(filteredRestaurants);
             setFilteredRickAndMortyCharacters(filteredCharacters);
-            if (!search) {
-              setFilteredListOfRestaurants(listOfRestaurants);
-            } else {
-              setFilteredListOfRestaurants([]);
-            }
           }}
         />
         <button
           className="clear-btn"
           onClick={() => {
-            setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
-            setFilteredListOfRestaurants(listOfRestaurants);
+            if (searchText) {
+              setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
+              setFilteredListOfRestaurants(listOfRestaurants);
+              setSearchText("");
+            }
           }}
         >
-          clear
+          Clear
         </button>
         {/* <input type="text" class="styled-input" placeholder="Search rick and morty characters"></input> */}
         {/* <button
@@ -143,8 +140,8 @@ const Body = () => {
           disabled={listOfRestaurants?.length === 0}
           className="top-rated-restaurants-btn"
           onClick={() => {
-            const topRestaurants = listOfRestaurants.filter(
-              (restaurant) => restaurant.info.avgRating > 4.2
+            const topRestaurants = listOfRestaurants?.filter(
+              (restaurant) => restaurant?.info?.avgRating > 4.2
             );
             setFilteredListOfRestaurants(topRestaurants);
             setFilteredRickAndMortyCharacters([]);
@@ -190,32 +187,35 @@ const Body = () => {
       </div>
 
       <div className="restaurant-container">
-        {filteredListOfRestaurants?.map((res, index) => (
-          <RestaurantCard
-            restaurantName={res?.info?.name}
-            cuisines={
-              res?.info?.cuisines?.length > 4
-                ? res?.info?.cuisines.splice(0, 4)?.join(",")
-                : res?.info?.cuisines?.join(",")
-            }
-            ratings={res?.info?.avgRatingString}
-            address={res?.info?.areaName}
-            costForTwo={res?.info?.costForTwo}
-            sla={res?.info?.sla?.slaString}
-            imageUrl={SAMPLE_RESTAURANT_LOGO}
-            key={res?.info?.id}
-          ></RestaurantCard>
+        {filteredListOfRestaurants?.map((res) => (
+          <Link to={"restaurant/" + res?.info?.id} key={res?.info?.id}>
+            <RestaurantCard
+              restaurantName={res?.info?.name}
+              cuisines={
+                res?.info?.cuisines?.length > 4
+                  ? res?.info?.cuisines?.splice(0, 4)?.join(",")
+                  : res?.info?.cuisines?.join(",")
+              }
+              ratings={res?.info?.avgRatingString}
+              address={res?.info?.areaName}
+              costForTwo={res?.info?.costForTwo}
+              sla={res?.info?.sla?.slaString}
+              imageUrl={SAMPLE_RESTAURANT_LOGO}
+            ></RestaurantCard>
+          </Link>
         ))}
       </div>
       <div className="restaurant-container">
-        {filteredRickAndMortyCharacters?.map((res, index) => (
+        {filteredRickAndMortyCharacters?.map((res) => (
+          // <Link to={"character/" + res?.id} key={res?.id}>
+
           <RickAndMorty
-            key={res?.id}
             name={res?.name}
             status={res?.status}
             location={res?.location?.name}
             image={res?.image}
             species={res?.species}
+            key={res?.id}
           ></RickAndMorty>
         ))}
       </div>

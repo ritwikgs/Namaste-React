@@ -10,16 +10,15 @@ const RickAndMorty = ({ name, status, location, image, species }) => {
           <div className="restaurant-details">
             <h4>{location}</h4>
           </div>
+          <div className="species">{species}</div>
           <div className="status">
-            <li
+            <h3
               className={
                 status === "Alive" ? "inline-list-alive" : "inline-list-dead"
               }
             >
-              <h3>
-                {status}-{species}
-              </h3>
-            </li>
+              {status}
+            </h3>
           </div>
         </div>
       </div>

@@ -4,6 +4,9 @@
   background: linear-gradient(to right, #3f4041, #091122);
 }
 
+body {
+  background: linear-gradient(to right, #3f4041, #091122);
+}
 .body {
   background: linear-gradient(to right, #3f4041, #091122);
 }
@@ -13,26 +16,51 @@
   justify-content: space-between;
 }
 
-.nav-items > ul {
+.nav-items {
   display: flex;
-  list-style-type: none;
+  justify-content: space-between;
+  gap: 10px;
   font-size: 14px;
 }
 
-.nav-items > ul > li {
+/* .link {
   margin: 10px;
   padding: 10px;
-  color: #fff; /* Light text color */
+  color: #fff;
+  text-decoration: none;
   font-size: 18px;
   font-weight: bold;
+} */
+
+.link:hover {
+  padding: 10px 10px;
+  background-color: #2b2d31;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.nav-items > ul > li:hover {
+/* .nav-items > ul > li {
+  margin: 10px;
+  padding: 10px;
+  color: #fff; 
+  /* font-size: 18px;
+  font-weight: bold; 
+} 
+  */
+
+/* .nav-items > ul > li:hover {
   background-color: rgb(8, 8, 8);
   color: rgb(248, 246, 243);
   cursor: pointer;
   border-radius: 5px;
-}
+} */
 
 .logo {
   width: 200px;
@@ -40,12 +68,14 @@
 }
 
 .restaurant-card {
+  text-decoration: dotted;
   width: 190px;
   height: 320px;
   padding: 7px;
   font-size: 9px;
   margin: 10px;
-  background: linear-gradient(to right, #4b6cb7, #193b80);
+  color: #5976af;
+  background: linear-gradient(to right, #333435, #070e1c);
   border-radius: 5px;
 }
 
@@ -55,7 +85,8 @@
   padding: 5px;
   font-size: 9px;
   margin: 10px;
-  background-color: #555050f0;
+  color: #5976af;
+  background: linear-gradient(to right, #333435, #070e1c);
   border-radius: 5px;
 }
 
@@ -68,6 +99,7 @@
 .rick-and-morty-card:hover {
   border: 0.5px solid #131313f0;
   cursor: pointer;
+  font-size: 10px;
   background-color: #131313f0;
   color: rgb(243, 243, 233);
 }
@@ -75,8 +107,9 @@
 .restaurant-card:hover {
   border: 0.5px;
   cursor: pointer;
-  background: linear-gradient(to right, #333435, #070e1c);
+  background: linear-gradient(to right, #4b6cb7, #193b80);
   color: rgb(243, 243, 233);
+  font-size: 10px;
 }
 
 .search {
@@ -125,8 +158,8 @@
 } */
 
 .search-text {
-  width: 300px;
-  padding: 10px;
+  width: 400px;
+  padding: 12px;
   border: 2px solid #4b6e86; /* Border color */
   border-radius: 5px;
   outline: none;
@@ -135,7 +168,7 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.earch-text:focus {
+.search-text:focus {
   border-color: #2ecc71; /* Border color on focus */
   box-shadow: 0 0 10px rgba(46, 204, 113, 0.6); /* Box shadow on focus */
 }
@@ -143,7 +176,7 @@
 .top-rated-restaurants-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #2b2d31; /* Dark background color */
+  background-color: #242629; /* Dark background color */
   color: #fff; /* Light text color */
   font-size: 14px;
   font-weight: bold;
@@ -159,7 +192,7 @@
   display: inline-block;
   padding: 10px 20px;
   margin-left: 10px;
-  background-color: #2b2d31; /* Dark background color */
+  background-color: #242629; /* Dark background color */
   color: #fff; /* Light text color */
   font-size: 14px;
   font-weight: bold;
@@ -180,21 +213,20 @@
 }
 
 .inline-list-alive {
-  color: #0b4f15f0;
+  color: #119d26f0;
   padding: 0;
   font-size: x-small;
 }
 
 .inline-list-dead {
-  color: #940707f0;
+  color: #c81a1af0;
   padding: 0;
   font-size: x-small;
 }
 
 .status {
   display: inline-block;
-  margin-left: 10px; /* Adjust spacing between items if needed */
-  font-weight: 800;
+  font-weight: 900;
 }
 .shimmer-container {
   display: flex;
@@ -210,8 +242,8 @@
 } */
 
 .shimmer-card {
-  width: 350px;
-  height: 200px;
+  width: 190px;
+  height: 320px;
   margin: 20px;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -220,7 +252,7 @@
 
 .shimmer-image,
 .shimmer-text {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d3cfcf 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -232,6 +264,10 @@
 .shimmer-text {
   height: 30%;
   margin-top: 10px;
+}
+
+.species {
+  font-size: 12px;
 }
 
 .search-box {

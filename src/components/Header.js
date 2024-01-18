@@ -8,17 +8,32 @@ const Header = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img className="logo" src={LOGO_URL} />
+        {/* <img className="logo" src={LOGO_URL} /> */}
       </div>
       <div className="nav-items">
-        <ul>
-          {/* <Link to="/">Home</Link>
-          <Link to="/about">About</Link> */}
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
+        <div className="link">
+          <Link to="/">
+            <button className="top-rated-restaurants-btn">Home</button>
+          </Link>
+        </div>
+        <div className="link">
+          <Link to="/about">
+            <button className="top-rated-restaurants-btn">About</button>
+          </Link>
+        </div>
+        <div className="link">
+          <Link to="contact" color="white">
+            <button className="top-rated-restaurants-btn">Contact</button>
+          </Link>
+        </div>
+        <div className="link">
+          <Link>
+            <button className="top-rated-restaurants-btn">Cart</button>
+          </Link>
+        </div>
+        <div className="link">
           <button
+            className="top-rated-restaurants-btn"
             onClick={() => {
               const state = btnNameReact === "Logout" ? "Login" : "Logout";
               setBtnNameReact(state);
@@ -26,7 +41,7 @@ const Header = () => {
           >
             {btnNameReact}
           </button>
-        </ul>
+        </div>
       </div>
     </div>
   );
