@@ -1,4 +1,4 @@
-.header {
+/* .header {
   display: flex;
   justify-content: space-between;
   background: linear-gradient(to right, #3f4041, #091122);
@@ -23,15 +23,6 @@ body {
   font-size: 14px;
 }
 
-/* .link {
-  margin: 10px;
-  padding: 10px;
-  color: #fff;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-} */
-
 .link:hover {
   padding: 10px 10px;
   background-color: #2b2d31;
@@ -46,37 +37,15 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* .nav-items > ul > li {
-  margin: 10px;
-  padding: 10px;
-  color: #fff; 
-  /* font-size: 18px;
-  font-weight: bold; 
-} 
-  */
-
-/* .nav-items > ul > li:hover {
-  background-color: rgb(8, 8, 8);
-  color: rgb(248, 246, 243);
-  cursor: pointer;
-  border-radius: 5px;
-} */
-
 .logo {
   width: 200px;
   height: 100px;
 }
 
-.restaurant-card {
-  text-decoration: dotted;
-  width: 190px;
-  height: 320px;
-  padding: 7px;
-  font-size: 9px;
-  margin: 10px;
-  color: #5976af;
-  background: linear-gradient(to right, #333435, #070e1c);
-  border-radius: 5px;
+.character-image {
+  max-width: 70%;
+  min-height: 100%;
+  border-radius: 10px;
 }
 
 .rick-and-morty-card {
@@ -90,11 +59,6 @@ body {
   border-radius: 5px;
 }
 
-.character-image {
-  max-width: 70%;
-  min-height: 100%;
-  border-radius: 10px;
-}
 
 .rick-and-morty-card:hover {
   border: 0.5px solid #131313f0;
@@ -102,6 +66,18 @@ body {
   font-size: 10px;
   background-color: #131313f0;
   color: rgb(243, 243, 233);
+}
+
+.restaurant-card {
+  text-decoration: dotted;
+  width: 190px;
+  height: 320px;
+  padding: 7px;
+  font-size: 9px;
+  margin: 10px;
+  color: #5976af;
+  background: linear-gradient(to right, #333435, #070e1c);
+  border-radius: 5px;
 }
 
 .restaurant-card:hover {
@@ -134,7 +110,7 @@ body {
 
 .restaurant-details-f2-row {
   display: flex !important;
-  gap: 10px !important; /* Adjust the gap value as needed */
+  gap: 10px !important;
 }
 
 .restaurant-address {
@@ -159,35 +135,27 @@ body {
   margin-top: 20px;
 }
 
-/* .top-rated-restaurants-btn {
-  margin-left: 5px;
-  cursor: pointer;
-  background-color: #070e1c;
-  color: #e0e0e0;
-  border-radius: 5px;
-} */
-
 .search-text {
   width: 400px;
   padding: 12px;
-  border: 2px solid #4b6e86; /* Border color */
+  border: 2px solid #4b6e86;
   border-radius: 5px;
   outline: none;
   font-size: 14px;
-  color: #333; /* Text color */
+  color: #333;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .search-text:focus {
-  border-color: #2ecc71; /* Border color on focus */
-  box-shadow: 0 0 10px rgba(46, 204, 113, 0.6); /* Box shadow on focus */
+  border-color: #2ecc71;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.6);
 }
 
 .top-rated-restaurants-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #242629; /* Dark background color */
-  color: #fff; /* Light text color */
+  background-color: #242629;
+  color: #fff;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
@@ -198,12 +166,16 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.top-rated-restaurants-btn:hover {
+  background-color: #555;
+}
+
 .clear-btn {
   display: inline-block;
   padding: 10px 20px;
   margin-left: 10px;
-  background-color: #242629; /* Dark background color */
-  color: #fff; /* Light text color */
+  background-color: #242629;
+  color: #fff;
   font-size: 14px;
   font-weight: bold;
   text-align: center;
@@ -215,11 +187,7 @@ body {
 }
 
 .clear-btn:hover {
-  background-color: #555; /* Darker background color on hover */
-}
-
-.top-rated-restaurants-btn:hover {
-  background-color: #555; /* Darker background color on hover */
+  background-color: #555;
 }
 
 .inline-list-alive {
@@ -238,18 +206,11 @@ body {
   display: inline-block;
   font-weight: 900;
 }
+
 .shimmer-container {
   display: flex;
   flex-wrap: wrap;
 }
-
-/* .shimmer-card {
-  width: 350px;
-  height: 200px;
-  margin: 20px;
-  background-color: #9e9393f0;
-  border-radius: 5px;
-} */
 
 .shimmer-card {
   width: 190px;
@@ -265,6 +226,16 @@ body {
   background: linear-gradient(90deg, #d3cfcf 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
+}
+
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .shimmer-image {
@@ -311,4 +282,42 @@ body {
   100% {
     background-position: 200% 0;
   }
+} */
+
+.shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.shimmer-card {
+  width: 190px;
+  height: 320px;
+  margin: 20px;
+  background-color: #b4a0a0;
+  border: 1px solid #a59494;
+  border-radius: 5px;
+}
+
+.shimmer-image,
+.shimmer-text {
+  background: linear-gradient(90deg, #cfcccc 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.link-hover:hover {
+  @apply px-2 py-2 bg-gray-800 text-white text-xl font-bold text-center no-underline rounded-md cursor-pointer transition duration-300 ease-in-out;
 }

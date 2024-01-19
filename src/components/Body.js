@@ -68,20 +68,20 @@ const Body = () => {
   // console.log(isOnline, "isOnline");
 
   // if (!isOnline) {
-  //   return <div className="offline-card">You are offline!</div>;
+  //   return <div className="w-full h-70 bg-red-500 text-gray-300 text-xl font-bold mt-20">You are offline!</div>;
   // }
 
   if (rickAndMortyCharacters?.length === 0 || listOfRestaurants?.length === 0) {
-    return <div className="shimmer-container">{generateShimmers(10)}</div>;
+    return <div className="flex flex-wrap">{generateShimmers(10)}</div>;
   }
 
   return (
-    <div className="body">
-      <div className="search-box">
+    <div className="bg-gradient-to-r from-gray-800 to-indigo-900">
+      <div className="flex justify-start ml-15">
         <input
           type="text"
           placeholder="Search"
-          className="search-text"
+          className="h-11 w-3/12 mx-10 p-3 border-2 border-gray-300 rounded-md outline-none text-base text-gray-700 transition duration-300 focus:border-green-400 focus:shadow-outline-green"
           value={searchText}
           onChange={(e) => {
             const search = e.target.value;
@@ -100,7 +100,7 @@ const Body = () => {
           }}
         />
         <button
-          className="clear-btn"
+          className="inline-block px-5 mb-4 py-4 bg-cyan-500 shadow-lg shadow-cyan-500/50 my-2 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           onClick={() => {
             if (searchText) {
               setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
@@ -111,6 +111,7 @@ const Body = () => {
         >
           Clear
         </button>
+
         {/* <input type="text" class="styled-input" placeholder="Search rick and morty characters"></input> */}
         {/* <button
           onClick={() => {
@@ -125,9 +126,9 @@ const Body = () => {
           search
         </button> */}
       </div>
-      <div className="top-rated-restaurants-filter">
+      <div className="mx-10 my-10 flex justify-around">
         <button
-          className="top-rated-restaurants-btn"
+          className="inline-block px-5 py-3 bg-gray-700 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           onClick={() => {
             setFilteredListOfRestaurants(listOfRestaurants);
             setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
@@ -136,7 +137,7 @@ const Body = () => {
           All
         </button>
         <button
-          className="top-rated-restaurants-btn"
+          className="inline-block px-5 py-3 bg-gray-700 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           onClick={() => {
             setFilteredListOfRestaurants(listOfRestaurants);
             setFilteredRickAndMortyCharacters([]);
@@ -146,7 +147,7 @@ const Body = () => {
         </button>
         <button
           disabled={listOfRestaurants?.length === 0}
-          className="top-rated-restaurants-btn"
+          className="inline-block px-5 py-3 bg-gray-700 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           onClick={() => {
             const topRestaurants = listOfRestaurants?.filter(
               (restaurant) => restaurant?.info?.avgRating > 4.2
@@ -158,7 +159,7 @@ const Body = () => {
           Top rated Restaurants
         </button>
         <button
-          className="top-rated-restaurants-btn"
+          className="inline-block px-5 py-3 bg-gray-700 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           onClick={() => {
             setFilteredListOfRestaurants([]);
             setFilteredRickAndMortyCharacters(rickAndMortyCharacters);
@@ -167,7 +168,7 @@ const Body = () => {
           Only Rick and Morty
         </button>
         <button
-          className="top-rated-restaurants-btn"
+          className="inline-block px-5 py-3 bg-gray-700 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           disabled={rickAndMortyCharacters?.length === 0}
           onClick={() => {
             const humansOnly = rickAndMortyCharacters?.filter(
@@ -180,7 +181,7 @@ const Body = () => {
           Only Humans
         </button>
         <button
-          className="top-rated-restaurants-btn"
+          className="inline-block px-5 py-3 bg-gray-700 text-white text-base font-bold text-center no-underline rounded-md transition duration-300 ease-in-out hover:bg-gray-900"
           disabled={rickAndMortyCharacters?.length === 0}
           onClick={() => {
             const alinesOnly = rickAndMortyCharacters?.filter(
@@ -194,7 +195,7 @@ const Body = () => {
         </button>
       </div>
 
-      <div className="restaurant-container">
+      <div className="grid grid-cols-4 gap-4">
         {filteredListOfRestaurants?.map((res) => (
           <Link to={"restaurant/" + res?.info?.id} key={res?.info?.id}>
             <RestaurantCard
@@ -213,7 +214,7 @@ const Body = () => {
           </Link>
         ))}
       </div>
-      <div className="restaurant-container">
+      <div className="flex flex-wrap">
         {filteredRickAndMortyCharacters?.map((res) => (
           // <Link to={"character/" + res?.id} key={res?.id}>
 
