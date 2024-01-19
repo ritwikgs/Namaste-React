@@ -59,7 +59,7 @@ const Body = () => {
     setTimeout(() => {
       getRickAndMortyData();
       getRestaurantData();
-    }, 1000);
+    }, 200);
   }, []);
 
   // console.log(rickAndMortyCharacters.length, listOfRestaurants.length);
